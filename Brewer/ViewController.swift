@@ -10,8 +10,6 @@ import UIKit
 import CountdownLabel
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var countDownView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +24,7 @@ class ViewController: UIViewController {
     }
     
     func setTimer() -> Void {
-        let countdownLabel = CountdownLabel(frame: self.countDownView.frame, minutes: 30) // you can use NSDate as well
+        let countdownLabel = CountdownLabel(frame: CGRectZero, minutes: 30) // you can use NSDate as well
         countdownLabel.start()
     }
     
