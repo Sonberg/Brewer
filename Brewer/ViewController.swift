@@ -7,43 +7,69 @@
 //
 
 import UIKit
-import CountdownLabel
+import AKPickerView_Swift
+import ChameleonFramework
+import SkyFloatingLabelTextField
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource {
+    
+    let screenSize : CGRect = UIScreen.main.bounds
+    let methods = ["Chemex", "Aeropress", "Pour-over"]
+    
+    @IBOutlet weak var pickerView: AKPickerView!
+    @IBOutlet weak var coffeeLabel: SkyFloatingLabelTextField!
+    @IBOutlet weak var waterLabel: SkyFloatingLabelTextField!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setBackground()
-        self.setTimer()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    func setTimer() -> Void {
-        let countdownLabel = CountdownLabel(frame: CGRectZero, minutes: 30) // you can use NSDate as well
-        countdownLabel.start()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setBackground()
+        self.coffeeLabel.text = ""
+        self.waterLabel.text = ""
+        self.coffeeLabel.textAlignment = .left
+        self.waterLabel.textAlignment = .right
+        
+        self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 32)!
+        self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Light", size: 32)!
+        self.pickerView.interitemSpacing = 20.0
+        self.pickerView.pickerViewStyle = .wheel
+        self.pickerView.reloadData()
+    }
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.setBackground()
     }
     
     func setBackground() -> Void {
-        let gradient: CAGradientLayer = CAGradientLayer()
         
-        gradient.colors = [
-           // UIColor(red: 248.0/255.0, green: 177.0/255.0, blue: 149.0/255.0, alpha: 1.0).CGColor,
-            UIColor(red: 244.0/255.0, green: 112.0/255.0, blue: 128.0/255.0, alpha: 1.0).CGColor,
-            UIColor(red: 193.0/255.0, green: 107.0/255.0, blue: 132.0/255.0, alpha: 1.0).CGColor,
-            UIColor(red: 107.0/255.0, green: 92.0/255.0, blue: 123.0/255.0, alpha: 1.0).CGColor
+        let colors = [
+            UIColor(red: 244.0/255.0, green: 112.0/255.0, blue: 128.0/255.0, alpha: 1.0),
+            UIColor(red: 193.0/255.0, green: 107.0/255.0, blue: 132.0/255.0, alpha: 1.0)
         ]
-        gradient.locations = [0.0 , 1.0]
-        gradient.startPoint = CGPoint(x: 1.0, y: 0.0)
-        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
-        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        self.view.backgroundColor = UIColor(gradientStyle: UIGradientStyle.topToBottom, withFrame: self.screenSize, andColors: colors)
     }
+    
+    func numberOfItemsInPickerView(_ pickerView: AKPickerView) -> Int {
+        return self.methods.count
+    }
+    func pickerView(_ pickerView: AKPickerView, titleForItem item: Int) -> String {
+        return self.methods[item]
+    }
+    
+    func pickerView(_ pickerView: AKPickerView, didSelectItem item: Int) {
+        
+    }
+    
+    
+
 
 
 }

@@ -84,10 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-Brewer/CountdownLabel.framework"
-  install_framework "Pods-Brewer/LTMorphingLabel.framework"
+  install_framework "Pods-Brewer/AKPickerView_Swift.framework"
+  install_framework "Pods-Brewer/ChameleonFramework.framework"
+  install_framework "Pods-Brewer/EasyAnimation.framework"
+  install_framework "Pods-Brewer/SkyFloatingLabelTextField.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-Brewer/CountdownLabel.framework"
-  install_framework "Pods-Brewer/LTMorphingLabel.framework"
+  install_framework "Pods-Brewer/AKPickerView_Swift.framework"
+  install_framework "Pods-Brewer/ChameleonFramework.framework"
+  install_framework "Pods-Brewer/EasyAnimation.framework"
+  install_framework "Pods-Brewer/SkyFloatingLabelTextField.framework"
 fi

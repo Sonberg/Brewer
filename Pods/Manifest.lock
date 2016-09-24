@@ -1,13 +1,21 @@
 PODS:
-  - CountdownLabel (1.1.2):
-    - LTMorphingLabel (~> 0.1.1)
-  - LTMorphingLabel (0.1.1)
+  - AKPickerView-Swift (1.0.1)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - EasyAnimation (1.1.1)
+  - SkyFloatingLabelTextField (1.2.1)
 
 DEPENDENCIES:
-  - CountdownLabel
+  - AKPickerView-Swift
+  - ChameleonFramework/Swift
+  - EasyAnimation
+  - SkyFloatingLabelTextField (~> 1.0)
 
 SPEC CHECKSUMS:
-  CountdownLabel: 06f96abd1f6e3a2dc6795ffb321c742ab5959b74
-  LTMorphingLabel: dfc40f43a0dcf81867b1f29431f34e861a5f1b35
+  AKPickerView-Swift: 8509d472bb257649383c276506334a7373d3cb33
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  EasyAnimation: e67601df3eb57e86c570948a250ce162a5665b8a
+  SkyFloatingLabelTextField: 3f6610aded18e778df5cfab3b9e12a11b3e014e9
 
 COCOAPODS: 0.39.0
