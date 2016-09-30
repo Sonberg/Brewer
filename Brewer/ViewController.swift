@@ -15,16 +15,21 @@ class ViewController: UIViewController, AKPickerViewDelegate, AKPickerViewDataSo
     
     let screenSize : CGRect = UIScreen.main.bounds
     let methods = ["Chemex", "Aeropress", "Pour-over"]
+    let ratio = ["1/10", "2/10", "3/10", "4/10", "5/10"]
     
     @IBOutlet weak var pickerView: AKPickerView!
+    @IBOutlet weak var pickerViewRatio: AKPickerView!
     @IBOutlet weak var coffeeLabel: SkyFloatingLabelTextField!
     @IBOutlet weak var waterLabel: SkyFloatingLabelTextField!
+
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
+        self.pickerViewRatio.delegate = self
+        self.pickerViewRatio.dataSource = self
     }
 
     
@@ -34,13 +39,20 @@ class ViewController: UIViewController, AKPickerViewDelegate, AKPickerViewDataSo
         self.coffeeLabel.text = ""
         self.waterLabel.text = ""
         self.coffeeLabel.textAlignment = .left
-        self.waterLabel.textAlignment = .right
+        self.waterLabel.textAlignment = .left
         
-        self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 32)!
-        self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Light", size: 32)!
+        self.pickerView.font = UIFont(name: "AvenirNext-UltraLight", size: 30)!
+        self.pickerView.highlightedFont = UIFont(name: "AvenirNext-UltraLight", size: 30)!
         self.pickerView.interitemSpacing = 20.0
         self.pickerView.pickerViewStyle = .wheel
         self.pickerView.reloadData()
+        
+        self.pickerViewRatio.font = UIFont(name: "AvenirNext-UltraLight", size: 30)!
+        self.pickerViewRatio.highlightedFont = UIFont(name: "AvenirNext-UltraLight", size: 30)!
+        self.pickerViewRatio.interitemSpacing = 20.0
+        self.pickerViewRatio.pickerViewStyle = .wheel
+        self.pickerViewRatio.reloadData()
+
     }
 
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -68,6 +80,18 @@ class ViewController: UIViewController, AKPickerViewDelegate, AKPickerViewDataSo
         
     }
     
+
+    func numberOfItemsInPickerViewRatio(_ pickerViewRatio: AKPickerView) -> Int {
+        return self.ratio.count
+    }
+    @nonobjc func pickerViewRatio(_ pickerViewRatio: AKPickerView, titleForItem item: Int) -> String {
+        return self.ratio[item]
+    }
+    
+    func pickerViewRatio(_ pickerViewRatio: AKPickerView, didSelectItem item: Int) {
+        
+    }
+
     
 
 
